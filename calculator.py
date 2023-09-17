@@ -1,8 +1,9 @@
-# add the square root and exponent
+import math
 
 def main():
-    titlescreen()
-    inputf()
+        titlescreen()
+        inputf()
+
 
 
 def titlescreen():
@@ -20,7 +21,7 @@ def inputf():
     while True:
             userinput = str(input("> "))
             if userinput in ["+","-","*","/","^","#","0"] :
-                if userinput != "0" and userinput != "#" and userinput != "^":
+                if userinput != "0" and userinput != "#":
                     num1 = int(input("N#1: "))
                     num2 = int(input("N#2: "))
                 break
@@ -36,16 +37,13 @@ def inputf():
         case "/" :
             result = (num1 / num2)
         case "^" :
-            print("unavailable")
+            result = (num1 ** num2)
         case "#" :
-            print("unavailable")
-            """
             try :
                 sqrnum = int(input("Type a number to square root: "))
-                sqrresult = "idk"
+                sqrresult = math.sqrt(sqrnum)
             except ValueError :
                 print("Invalid number")
-            """
 
 
         case "0" :
@@ -53,9 +51,15 @@ def inputf():
         
 
     if userinput != "0" and userinput != "#" and userinput != "^":
-        print(f"{num1} {userinput} {num2} = {result}")  
-    # elif userinput == "#" :
-        # print(f"Square root of {sqrnum} = {sqrresult}")
-        
+        print(f"{num1} {userinput} {num2} = {result}") 
+    elif userinput == "#" :
+        print(f"Square root of {sqrnum} = {sqrresult}")
+    elif userinput == "^" :
+        print(f"{num1} ^ {num2} = {result}")
+    # again sec
+    if userinput != "0" :
+        main()
+    
 
 main()
+print("******************************************************")
