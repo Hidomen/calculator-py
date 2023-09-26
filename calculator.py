@@ -1,12 +1,11 @@
 import math
 
 def main():
-        titlescreen()
+        options()
         inputf()
 
 
-
-def titlescreen():
+def options():
     print("********************* CALCULATOR *********************")
     print("Choose an operator {for Quit -> 0} :")
     print(" (+) - ADDITION")
@@ -17,17 +16,16 @@ def titlescreen():
     print(" (#) - SQUARE ROOT")
 
 def inputf():
-
     while True:
-            userinput = str(input("> "))
-            if userinput in ["+","-","*","/","^","#","0"] :
-                if userinput != "0" and userinput != "#":
+            operator = str(input("> "))
+            if operator in ["+","-","*","/","^","#","0"] :
+                if operator != "0" and operator != "#":
                     num1 = int(input("N#1: "))
                     num2 = int(input("N#2: "))
                 break
     
-
-    match userinput :
+    final = True
+    match operator :
         case "+" :
             result = (num1 + num2)
         case "-" :
@@ -35,31 +33,37 @@ def inputf():
         case "*" :
             result = (num1 * num2)
         case "/" :
-            result = (num1 / num2)
+            if num1 == num2 == 0 :
+                print("ERROR")
+                final = False
+            else :
+                result = (num1 / num2)
         case "^" :
             result = (num1 ** num2)
+            final = False
         case "#" :
             try :
-                sqrnum = int(input("Type a number to square root: "))
+                sqrnum = int(input("Type a number to take square root: "))
                 sqrresult = math.sqrt(sqrnum)
             except ValueError :
                 print("Invalid number")
+            final = False
 
 
         case "0" :
-            print("Exitting...")
+            print("EXITTING...")
+            final = False
         
 
-    if userinput != "0" and userinput != "#" and userinput != "^":
-        print(f"{num1} {userinput} {num2} = {result}") 
-    elif userinput == "#" :
+    if final == True:
+        print(f"{num1} {operator} {num2} = {result}") 
+    elif operator == "#" :
         print(f"Square root of {sqrnum} = {sqrresult}")
-    elif userinput == "^" :
+    elif operator == "^" :
         print(f"{num1} ^ {num2} = {result}")
     # again sec
-    if userinput != "0" :
+    if operator != "0" :
         main()
-    
 
 main()
 print("******************************************************")
